@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'ratio_groups' => [
+        'liquidity' => 'Ликвидност',
+        'profitability' => 'Рентабилност',
+        'leverage' => 'Задлъжнялост',
+        'efficiency' => 'Ефективност',
+        'custom' => 'Собствени',
+    ],
+    'ratio_formats' => [
+        'ratio' => 'Коефициент',
+        'percent' => 'Процент',
+        'days' => 'Дни',
+        'currency' => 'Сума',
+    ],
+    'statuses' => [
+        'good' => 'В целевия диапазон',
+        'warning' => 'Близо до целта',
+        'bad' => 'Извън целевия диапазон',
+        'better' => 'По-добре от целта',
+        'none' => 'Без цел',
+    ],
+    'methods' => [
+        'full' => 'Пълна консолидация',
+        'proportional' => 'Пропорционална консолидация',
+    ],
+    'rule_types' => [
+        'eliminate_counterparty' => 'Елиминиране по контрагент (юридическо лице от групата)',
+        'eliminate_account_pair' => 'Елиминиране по двойки сметки',
+        'reclassify' => 'Рекласификация на сметка',
+        'exclude_account' => 'Изключване на сметка',
+    ],
+    'account_types' => [
+        'asset' => 'Активи',
+        'liability' => 'Пасиви',
+        'equity' => 'Собствен капитал',
+        'revenue' => 'Приходи',
+        'expense' => 'Разходи',
+    ],
+    'account_subtypes' => [
+        'current_asset' => 'Краткотрайни активи',
+        'non_current_asset' => 'Дълготрайни активи',
+        'cash' => 'Парични средства',
+        'receivable' => 'Вземания',
+        'inventory' => 'Материални запаси',
+        'current_liability' => 'Краткосрочни задължения',
+        'non_current_liability' => 'Дългосрочни задължения',
+        'cogs' => 'Себестойност на продажбите',
+        'payroll' => 'Разходи за персонал',
+        'opex' => 'Оперативни разходи',
+        'depreciation' => 'Амортизации',
+        'interest' => 'Лихви',
+        'tax' => 'Данъци',
+        'other' => 'Други',
+    ],
+    'periodicity' => [
+        'month' => 'Месец',
+        'quarter' => 'Тримесечие',
+        'year' => 'Година',
+    ],
+    'consolidated' => 'Консолидирано',
+    'not_available' => '—',
+    'days_unit' => 'дни',
+    'pp_unit' => 'п.п.',
+];

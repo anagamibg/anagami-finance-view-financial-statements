@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'ratio_groups' => [
+        'liquidity' => 'Liquidity',
+        'profitability' => 'Profitability',
+        'leverage' => 'Leverage',
+        'efficiency' => 'Efficiency',
+        'custom' => 'Custom',
+    ],
+    'ratio_formats' => [
+        'ratio' => 'Ratio',
+        'percent' => 'Percent',
+        'days' => 'Days',
+        'currency' => 'Amount',
+    ],
+    'statuses' => [
+        'good' => 'Within target',
+        'warning' => 'Close to target',
+        'bad' => 'Outside target',
+        'better' => 'Better than target',
+        'none' => 'No target',
+    ],
+    'methods' => [
+        'full' => 'Full consolidation',
+        'proportional' => 'Proportional consolidation',
+    ],
+    'rule_types' => [
+        'eliminate_counterparty' => 'Eliminate by counterparty (entity of the group)',
+        'eliminate_account_pair' => 'Eliminate account pairs',
+        'reclassify' => 'Reclassify account',
+        'exclude_account' => 'Exclude account',
+    ],
+    'account_types' => [
+        'asset' => 'Assets',
+        'liability' => 'Liabilities',
+        'equity' => 'Equity',
+        'revenue' => 'Revenue',
+        'expense' => 'Expenses',
+    ],
+    'account_subtypes' => [
+        'current_asset' => 'Current assets',
+        'non_current_asset' => 'Non-current assets',
+        'cash' => 'Cash',
+        'receivable' => 'Receivables',
+        'inventory' => 'Inventory',
+        'current_liability' => 'Current liabilities',
+        'non_current_liability' => 'Non-current liabilities',
+        'cogs' => 'Cost of goods sold',
+        'payroll' => 'Payroll',
+        'opex' => 'Operating expenses',
+        'depreciation' => 'Depreciation',
+        'interest' => 'Interest',
+        'tax' => 'Taxes',
+        'other' => 'Other',
+    ],
+    'periodicity' => [
+        'month' => 'Month',
+        'quarter' => 'Quarter',
+        'year' => 'Year',
+    ],
+    'consolidated' => 'Consolidated',
+    'not_available' => '—',
+    'days_unit' => 'days',
+    'pp_unit' => 'pp',
+];
