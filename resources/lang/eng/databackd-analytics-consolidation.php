@@ -1,0 +1,180 @@
+<?php
+
+return [
+    'menu' => 'Consolidation',
+    'title' => 'Consolidation Worksheet',
+    'subtitle' => 'Consolidated income statement and balance sheet of the group of legal entities, with intercompany eliminations.',
+
+    'filters' => [
+        'group' => 'Consolidation group',
+        'period_type' => 'Period type',
+        'period' => 'Period',
+        'from' => 'From',
+        'to' => 'To',
+        'apply' => 'Show',
+        'rules' => 'Rules',
+        'export' => 'Export to Excel',
+    ],
+    'period_types' => [
+        'month' => 'Month',
+        'quarter' => 'Quarter',
+        'year' => 'Year',
+        'custom' => 'Custom period',
+    ],
+    'months' => [
+        1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April', 5 => 'May', 6 => 'June',
+        7 => 'July', 8 => 'August', 9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December',
+    ],
+    'quarters' => [
+        1 => 'Q1',
+        2 => 'Q2',
+        3 => 'Q3',
+        4 => 'Q4',
+    ],
+
+    'info' => [
+        'method' => 'Method',
+        'currency' => 'Base currency',
+        'period' => 'Period',
+        'entities' => 'Legal entities',
+        'intercompany_on' => 'Intercompany turnover: eliminated',
+        'intercompany_off' => 'Intercompany turnover: not eliminated',
+        'minority_on' => 'Non-controlling interest: reported',
+        'minority_off' => 'Non-controlling interest: not reported',
+    ],
+
+    'cards' => [
+        'revenue' => 'Consolidated revenue',
+        'expense' => 'Consolidated expenses',
+        'profit' => 'Consolidated profit',
+        'eliminated' => 'Eliminated intercompany turnover',
+        'revenue_info' => 'Revenue of all legal entities after eliminations and adjustments.',
+        'expense_info' => 'Expenses of all legal entities after eliminations and adjustments.',
+        'profit_info' => 'Consolidated revenue minus consolidated expenses for the period.',
+        'eliminated_info' => 'Turnover between the legal entities of the group that is excluded from consolidated revenue and expenses.',
+    ],
+
+    'charts' => [
+        'contribution_title' => 'Contribution of Each Legal Entity to Revenue and Profit',
+        'revenue_series' => 'Revenue',
+        'profit_series' => 'Profit',
+        'share_title' => 'Share of Revenue by Legal Entity',
+        'before_eliminations' => 'Legal entity amounts before eliminations.',
+    ],
+
+    'tabs' => [
+        'pnl' => 'Consolidated Income Statement',
+        'balance' => 'Consolidated Balance Sheet',
+        'pnl_short' => 'P&L',
+        'balance_short' => 'Balance Sheet',
+    ],
+    'amounts_in' => 'All amounts are in :currency.',
+    'click_hint' => 'Click an amount in the "Eliminations" column to see the eliminated entries.',
+
+    'columns' => [
+        'account' => 'Account',
+        'eliminations' => 'Eliminations',
+        'adjustments' => 'Adjustments',
+        'minority' => 'Non-Controlling Interest',
+        'consolidated' => 'Consolidated',
+    ],
+    'sections' => [
+        'revenue' => 'Revenue',
+        'expense' => 'Expenses',
+        'asset' => 'Assets',
+        'liability' => 'Liabilities',
+        'equity' => 'Equity',
+    ],
+    'groups' => [
+        'operating_revenue' => 'Operating revenue',
+    ],
+    'totals' => [
+        'group' => 'Total :name',
+        'revenue' => 'Total revenue',
+        'expense' => 'Total expenses',
+        'result' => 'Financial result',
+        'asset' => 'Total assets',
+        'liability' => 'Total liabilities',
+        'equity' => 'Total equity',
+        'liabilities_equity' => 'Total liabilities and equity',
+    ],
+
+    'balance_check' => [
+        'ok' => 'The balance sheet balances',
+        'ok_detail' => 'Assets: :assets — Liabilities and equity: :le',
+        'diff' => 'The balance sheet does not balance: difference :difference',
+        'diff_detail' => 'Assets: :assets — Liabilities and equity: :le',
+    ],
+
+    // AFV (S12)
+    'notices' => [
+        'fx_missing' => ':entity: no exchange rate :from → :to on :date. The amounts of the legal entity stay in :from, so the consolidated amounts are not accurate.',
+        'fx_link' => 'Enter a rate',
+        'duplicate_names' => 'Several legal entities in the group have the same name (:names). Entries with such a counterparty cannot be matched to one legal entity and are not eliminated.',
+        'group_link' => 'Open the group setup',
+        'elim_mismatch' => 'The eliminated intra-group revenue (:revenue) and expenses (:expense) differ. Probably one side of the transactions has no group legal entity as counterparty — the consolidated profit is affected.',
+        'without_entity' => '{1} :count entry in the period has no legal entity and is not consolidated.|[2,*] :count entries in the period have no legal entity and are not consolidated.',
+    ],
+    'legend' => [
+        'title' => 'How to read the table',
+        'entities' => 'Legal entity columns',
+        'entities_text' => 'amounts of each legal entity in the group base currency (proportional method: at the ownership share).',
+        'eliminations_text' => 'intra-group turnover and balances excluded from the consolidated amount (a negative number reduces the line). Click the amount to see the entries.',
+        'adjustments_text' => 'reclassifications and excluded accounts from the group rules.',
+        'minority_text' => 'the share of the other owners when ownership is below 100 %. For information only — not subtracted from the consolidated amount.',
+        'consolidated_text' => 'legal entities + eliminations + adjustments.',
+        'example' => 'Example: company A sells a service to company B for €10,000. A records revenue 703, B an expense 602, both with the other company as counterparty. On consolidation both amounts are eliminated: the group revenue and expenses fall by €10,000 and the profit does not change.',
+        'rules_link' => 'How the consolidation rules work',
+    ],
+
+    'empty' => [
+        'no_groups_title' => 'No consolidation group yet',
+        'no_groups_text' => 'Create a group, add the legal entities and the elimination rules — the consolidated statements will then appear here.',
+        'create_group' => 'Create a group',
+        'no_entities_title' => 'The group has no included legal entities',
+        'no_entities_text' => 'Add at least one legal entity to the group to calculate the consolidated statements.',
+        'add_entities' => 'Add legal entities',
+        'no_data_title' => 'No financial entries for the period',
+        'no_data_text' => 'The legal entities of the group have no entries for :period. Pick another period or enter data.',
+        'message' => 'No data — select a group with legal entities',
+        'hint' => 'Create a consolidation group and add the legal entities to it, then pick a period that has financial entries.',
+        'no_groups' => 'There is no consolidation group yet.',
+    ],
+    'select_group' => 'Select a group',
+    'entries_count' => ':count entries',
+    'show_entries' => 'Show eliminated entries',
+
+    'modal' => [
+        'title' => 'Eliminated Entries',
+        'summary' => ':count entries for :period, total :total',
+        'truncated' => 'Showing the first :limit entries.',
+        'empty' => 'No eliminated entries for this account and period.',
+        'close' => 'Close',
+        'total' => 'Total',
+        'worksheet_amount' => 'Eliminated in the worksheet: :amount',
+        'derived_note' => 'The intra-group balances are not tagged with a counterparty, so they are derived from the intra-group sales of the balance month. Those sales are listed below — their sum can be higher than the eliminated amount.',
+        'difference_note' => 'The entries are in the company currency, before the ownership share and the exchange rate, so their sum can differ from the eliminated amount in the worksheet.',
+        'columns' => [
+            'date' => 'Date',
+            'account' => 'Account',
+            'entity' => 'Legal Entity',
+            'counterparty' => 'Counterparty',
+            'document_no' => 'Document',
+            'description' => 'Description',
+            'amount' => 'Amount',
+            'amount_in' => 'Amount (:currency)',
+        ],
+    ],
+
+    'export' => [
+        'sheet_pnl' => 'Income statement',
+        'sheet_balance' => 'Balance sheet',
+        'code' => 'Code',
+        'title_pnl' => 'Consolidated Income Statement',
+        'title_balance' => 'Consolidated Balance Sheet',
+        'group' => 'Group',
+        'period' => 'Period',
+        'method' => 'Method',
+        'currency' => 'Currency',
+    ],
+];
