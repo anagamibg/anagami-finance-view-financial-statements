@@ -1,0 +1,283 @@
+// AFV UI partial: consolidation (S12 / A06) — worksheet notices, column legend, elimination column,
+// group settings (entities, rules) and the groups list. Base styles of the worksheet stay in _analytics.scss;
+// the selectors here are more specific (.dbk-analytics …) where they extend them.
+
+// ---------------------------------------------------------------- notices (warnings of a run)
+.dbk-cons-notices {
+    display: grid;
+    gap: var(--dbk-space-2);
+    margin-bottom: var(--dbk-space-4);
+}
+
+.dbk-cons-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--dbk-space-2);
+    padding: var(--dbk-space-3) var(--dbk-space-4);
+    border-radius: var(--dbk-radius-sm);
+    font-size: var(--dbk-fs-sm);
+    line-height: 20px;
+    color: var(--dbk-text);
+    border: 1px solid var(--dbk-border);
+    background: var(--dbk-surface);
+
+    > .bi { font-size: 16px; line-height: 20px; flex: none; }
+
+    &.is-warning {
+        background: var(--dbk-warning-soft);
+        border-color: transparent;
+
+        > .bi { color: var(--dbk-warning); }
+    }
+
+    &.is-info {
+        background: var(--dbk-accent-soft);
+        border-color: transparent;
+
+        > .bi { color: var(--dbk-accent); }
+    }
+}
+
+.dbk-cons-notice-link {
+    font-weight: 600;
+    color: var(--dbk-accent-text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    white-space: nowrap;
+}
+
+// ---------------------------------------------------------------- explainer (details/summary) and column legend
+.dbk-cons-explainer {
+    margin: 0 0 var(--dbk-space-3);
+    font-size: var(--dbk-fs-sm);
+    color: var(--dbk-text-2);
+
+    > summary {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 40px;
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--dbk-accent-text);
+        list-style: none;
+
+        &::-webkit-details-marker { display: none; }
+
+        &::before {
+            content: "\F431"; // bi-info-circle
+            font-family: "bootstrap-icons";
+            font-weight: 400;
+        }
+
+        &:focus-visible { outline: none; box-shadow: var(--dbk-focus-ring); border-radius: var(--dbk-radius-sm); }
+    }
+
+    &[open] > summary { margin-bottom: var(--dbk-space-2); }
+
+    p { margin: 0 0 var(--dbk-space-2); }
+
+    // inside its own card (group settings page)
+    &.is-card {
+        margin: 0;
+        padding: var(--dbk-space-3) var(--dbk-space-5) var(--dbk-space-4);
+
+        > summary { font-size: var(--dbk-fs-lg); color: var(--dbk-text); }
+
+        @media (max-width: 575.98px) { padding: var(--dbk-space-3) var(--dbk-space-4); }
+    }
+}
+
+.dbk-cons-legend,
+.dbk-cons-help-list {
+    margin: 0 0 var(--dbk-space-3);
+    padding: 0;
+    list-style: none;
+
+    li { margin-bottom: 6px; padding-left: 20px; position: relative; }
+    strong { color: var(--dbk-text); font-weight: 600; }
+}
+
+.dbk-cons-help-list li::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--dbk-text-muted);
+}
+
+.dbk-cons-legend-swatch {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    border: 1px solid var(--dbk-border-strong);
+    background: var(--dbk-surface);
+
+    &.is-elim { background: var(--dbk-warning-soft); border-color: var(--dbk-warning); }
+    &.is-adj { background: var(--dbk-surface-2); }
+    &.is-total { background: var(--dbk-accent-soft); border-color: var(--dbk-accent); }
+}
+
+.dbk-cons-example {
+    padding: var(--dbk-space-3);
+    border-left: 3px solid var(--dbk-accent);
+    background: var(--dbk-surface-2);
+    border-radius: 0 var(--dbk-radius-sm) var(--dbk-radius-sm) 0;
+    color: var(--dbk-text-2);
+}
+
+// ---------------------------------------------------------------- worksheet: the elimination column is tinted
+.dbk-analytics .dbk-analytics-cons-wrap {
+    tbody tr:not(.dbk-row-group):not(.dbk-row-total):not(.dbk-analytics-cons-group) > td.dbk-cons-elim-col {
+        background-color: var(--dbk-warning-soft);
+    }
+
+    thead th.dbk-cons-elim-col { color: var(--dbk-warning); }
+
+    // long entity names in the header: two lines at most instead of very wide columns
+    thead th.dbk-cons-entity-col {
+        max-width: 160px;
+        white-space: normal;
+        line-height: 16px;
+    }
+}
+
+// Tabs: short labels on phones, horizontal scroll instead of a clipped second tab
+.dbk-cons-tab-short { display: none; }
+
+@media (max-width: 575.98px) {
+    .dbk-analytics .dbk-analytics-cons-statements .dbk-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .dbk-cons-tab-long { display: none; }
+    .dbk-cons-tab-short { display: inline; }
+}
+
+// ---------------------------------------------------------------- groups list
+.dbk-analytics .dbk-cg-table {
+    th { white-space: nowrap; }
+
+    .dbk-cg-desc { max-width: 260px; }
+
+    .dbk-badge { white-space: nowrap; margin-bottom: 2px; }
+
+    .dbk-cg-actions { width: 1%; }
+}
+
+// ---------------------------------------------------------------- group settings page
+// KPI with text values (method name): wrap instead of an ellipsis
+.dbk-cg-kpis .dbk-kpi .dbk-kpi-value {
+    white-space: normal;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+// entity inputs: the error text goes under the input group
+.dbk-ent-table .dbk-ent-input {
+    flex-wrap: wrap;
+
+    .invalid-feedback {
+        flex-basis: 100%;
+        max-width: 190px;
+        white-space: normal;
+    }
+}
+
+.dbk-ent-table td { vertical-align: top; }
+
+@media (max-width: 575.98px) {
+    // card header: the long "standard rules" button wraps, the add menu stays visible
+    .dbk-analytics .dbk-card-header .dbk-card-actions {
+        width: 100%;
+
+        .btn { white-space: normal; text-align: left; }
+    }
+
+    // rules table → stacked rows: [handle № type actions] / [summary]
+    .dbk-analytics .dbk-rule-table {
+        thead { display: none; }
+
+        tbody tr.dbk-rule-row {
+            display: grid;
+            grid-template-columns: 32px 24px 1fr auto;
+            grid-template-areas: "handle num type actions" "summary summary summary summary";
+            align-items: center;
+            border-bottom: 1px solid var(--dbk-border);
+        }
+
+        tbody tr.dbk-rule-row > td {
+            border: 0;
+            width: auto !important;
+            padding: 8px 6px;
+        }
+
+        .dbk-rule-handle { grid-area: handle; }
+        .rule-number { grid-area: num; }
+        .dbk-rule-row > td:nth-child(3) { grid-area: type; min-width: 0; }
+        .dbk-rule-summary { grid-area: summary; padding: 0 12px 12px !important; }
+        .dbk-rule-actions { grid-area: actions; }
+
+        .dbk-badge { white-space: normal; }
+    }
+
+    .dbk-analytics .dbk-rule-actions .btn,
+    .dbk-analytics .dbk-cg-actions .btn { min-width: 40px; min-height: 40px; }
+}
+
+// Entities of the group on phones → one card per entity: [switch name currency] / [label: included] / [label: share] / [label: rate]
+@media (max-width: 575.98px) {
+    .dbk-analytics .dbk-ent-table {
+        thead { display: none; }
+
+        tbody tr.dbk-ent-row {
+            display: grid;
+            grid-template-columns: 52px 1fr auto;
+            grid-template-areas:
+                "member name currency"
+                "include include include"
+                "pct pct pct"
+                "fx fx fx";
+            border-bottom: 1px solid var(--dbk-border);
+            padding: 8px 0;
+        }
+
+        tbody tr.dbk-ent-row > td {
+            border: 0;
+            padding: 4px 12px;
+        }
+
+        .dbk-ent-in-group { grid-area: member; padding-top: 8px !important; }
+        .dbk-ent-entity { grid-area: name; }
+        .dbk-ent-currency { grid-area: currency; }
+        .dbk-ent-include { grid-area: include; }
+        .dbk-ent-ownership { grid-area: pct; }
+        .dbk-ent-fx-rate { grid-area: fx; }
+
+        // the other cells get their column name as a label on the left
+        .dbk-ent-include,
+        .dbk-ent-ownership,
+        .dbk-ent-fx-rate {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--dbk-space-3);
+
+            &::before {
+                content: attr(data-label);
+                font-size: var(--dbk-fs-xs);
+                color: var(--dbk-text-muted);
+                flex: none;
+            }
+        }
+
+        .dbk-ent-fx-rate .dbk-cg-note { text-align: right; }
+    }
+}

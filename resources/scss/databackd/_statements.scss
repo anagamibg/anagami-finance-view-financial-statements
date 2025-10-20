@@ -1,0 +1,17 @@
+// AFV S12 (A04): financial statements - P&L, cash flow, margins, annual statements by NSS.
+// Imported by the coordinator after _reports.scss (which keeps the base .pnl-* / .cf-* styles).
+
+.dbk-reports-cashflow .cf-table {
+    // "Other movements" is the reconciliation line, not an activity: quieter than the activity rows
+    tr.cf-other > * { color: var(--dbk-text-2); font-style: italic; }
+    tr.cf-other .cf-hint { font-style: normal; }
+
+    // the account / line rows are muted, but a negative amount stays red (ui-guidelines §7)
+    tr.cf-child > td.neg { color: var(--dbk-bad); }
+
+    // the expand / collapse control of an activity is a <button> (keyboard and screen reader friendly)
+    .cf-toggle { line-height: 1; vertical-align: baseline; color: var(--dbk-accent); }
+    .cf-toggle:focus { box-shadow: none; }
+    .cf-toggle:focus-visible { outline: 2px solid var(--dbk-accent); outline-offset: 2px; border-radius: 2px; }
+}
+
